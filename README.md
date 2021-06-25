@@ -1,4 +1,4 @@
-# DjangoApp v1.01
+# DjangoApp v1.02
 
 My Django Application
 

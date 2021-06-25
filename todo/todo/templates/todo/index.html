@@ -15,6 +15,59 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'todo/bs/css/flatly.min.css' %}" />
     <link rel="stylesheet" href="{% static 'todo/styles.css' %}" />
+
+    <!-- jQuery   -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link
+      href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- jQuery moje skripty -->
+    <script>
+      $(document).ready(function () {
+        // click Delete All
+        $("#deleteAll").click(function () {
+          ConfirmDialog("Are you sure?");
+        });
+      });
+
+      //  Yes or No confirm box using jQuery - https://is.gd/2U27Fd
+      function ConfirmDialog(message) {
+        $("<div></div>")
+          .appendTo("body")
+          .html("<div><h6>" + message + "?</h6></div>")
+          .dialog({
+            modal: true,
+            title: "Delete All?",
+            zIndex: 10000,
+            autoOpen: true,
+            width: "auto",
+            resizable: false,
+            buttons: {
+              Yes: function () {
+                // $(obj).removeAttr('onclick');
+                // $(obj).parents('.Parent').remove();
+                // $("body").append("<h2>Confirm Dialog Result: <i>Yes</i></h2>");
+                $(this).dialog("close");
+
+                // How to go to a URL using jQuery? [duplicate] -https://is.gd/BXLdVQ
+                //As an HTTP redirect (back button will not work )
+                // window.location.replace("http://www.google.com");
+                window.location.replace("{% url 'deleteall' %}");
+              },
+              No: function () {
+                // $("body").append("<h2>Confirm Dialog Result: <i>No</i></h2>");
+                $(this).dialog("close");
+              },
+            },
+            close: function (event, ui) {
+              $(this).remove();
+            },
+          });
+      }
+    </script>
   </head>
   <body>
     <div class="container-fluid" id="wrapper">
@@ -47,14 +100,22 @@
                     </button></a
                   >
                 </div>
+
                 <!-- deleteall -->
-                <div class="btn-group">
+                <!-- <div class="btn-group" id="delA">
                   <a href="{% url 'deleteall' %}"
                     ><button type="button" class="btn btn-warning">
                       <i class="glyphicon glyphicon-trash"></i> DELETE ALL
                     </button></a
                   >
+                </div> -->
+
+                <div class="btn-group" id="deleteAll">
+                  <button type="button" class="btn btn-warning">
+                    <i class="glyphicon glyphicon-trash"></i> DELETE ALL
+                  </button>
                 </div>
+
                 <!-- ----------------------------- -->
                 <!-- peg - pridani radku  -->
                 <div class="btn-group">
@@ -97,14 +158,24 @@
         <div class="row pad">
           <div class="col-lg-12 text-center">
             Copyright &copy; 2021 <strong>peg</strong> based on Copyright &copy;
-            2017 <strong>ToDo App</strong>
+            2017 <strong>ToDo App</strong> v1.02
           </div>
         </div>
 
         <h2>
-          <a href="http://127.0.0.1:8000/admin" target="_blank">
-            >>> Admin <<<
+          <a href="https://github.com/erlep/DjangoApp" target="_blank">
+            >>> GitHub: erlep / DjangoApp <<<
           </a>
+        </h2>
+
+        <h2>
+          <a href="https://github.com/erlep?tab=repositories" target="_blank">
+            >>> GitHub: erlep Repositorie's <<<
+          </a>
+        </h2>
+
+        <h2>
+          <a href="admin" target="_blank"> >>> Admin Page<<< </a>
         </h2>
       </footer>
     </div>
