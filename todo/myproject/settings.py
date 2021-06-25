@@ -25,11 +25,11 @@ SECRET_KEY = '-taty3pv6rv^^y%6stvmx-u=6%+!l63e@(x86y^-55334(#m-s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '10.0.100.68', '192.168.56.1']
+# pridano 'peg.pythonanywhere.com'
+ALLOWED_HOSTS = ['peg.pythonanywhere.com', '127.0.0.1', '10.0.100.68', '192.168.56.1']
 
 
 # Application definition
-
 INSTALLED_APPS = [
     'todo',
     'django.contrib.admin',
